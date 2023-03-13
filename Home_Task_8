@@ -1,0 +1,48 @@
+# Дополнить телефонный справочник возможностью изменения и удаления данных.
+# Пользователь также может ввести имя или фамилию, и Вы должны реализовать функционал для изменения и удаления данных
+
+def all_contacts():
+    with open('phones.txt', 'r', encoding='utf8') as file_phone:
+        for line in file_phone:
+            print(line)
+
+def find_contact(name):
+    with open('phones.txt', 'r', encoding='utf8') as file_phone:
+        for line in file_phone:
+            if name in line:
+                print(line)
+
+def add_contact(new_contact):
+    with open('phones.txt', 'a', encoding='utf8') as file_phone:
+        file_phone.write('\n')
+        file_phone.write(new_contact)
+
+
+def delNew(data):
+    with open('phones.txt', 'w+', encoding='utf8') as file_phone:
+        for i in file_phone:
+            data = file_phone.read()
+            data = data.replace(search_text, replace_text)
+            file_phone.write(data)
+        
+def main_menu(numb):
+    if numb == 1:
+        all_contacts()
+    elif numb == 2:
+        name = input('Введите имя:')
+        find_contact(name)
+    elif numb == 3:
+        data = input('Введите новый контакт:')
+        add_contact(data)
+    elif numb == 4:
+        search_text = input('Введите строку которую нужно изменить:')
+        replace_text = input("На что заменить: ")
+        delNew(data)
+
+
+
+while True:
+    numb = int(input('Введите 1-для печати всего справочника; 2 - для поиска контакта; 3-для записи контакта; 4-для изменения и удаления контакта; 5 - для выхода из программы'))
+    if numb == 5:
+        break
+    main_menu(numb)
